@@ -65,7 +65,7 @@ public class SetPortForm extends javax.swing.JFrame {
                     ExitItem.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            int opt = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit 'Smart Helmet'? \nMany people could die!!!", "SmartHelmet - Exit", JOptionPane.YES_NO_OPTION);
+                            int opt = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit 'Smart Helmet Server'? \nMany people could die you know!!!", "SmartHelmetServer - Exit", JOptionPane.YES_NO_OPTION);
                             if (opt == JOptionPane.YES_OPTION) {
                                 System.exit(0);
                             }
@@ -81,7 +81,7 @@ public class SetPortForm extends javax.swing.JFrame {
                     });
                     popup.add(OpenItem);
                     popup.add(ExitItem);
-                    trayIcon = new TrayIcon(image, "Smart Helmet", popup);
+                    trayIcon = new TrayIcon(image, "Smart Helmet Server", popup);
                     ActionListener listener = new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
@@ -119,7 +119,7 @@ public class SetPortForm extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("Accident Alerter");
+        setTitle("SmartHelmetServer - Set Port");
         setResizable(false);
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
