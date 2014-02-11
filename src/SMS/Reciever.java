@@ -94,7 +94,7 @@ public class Reciever implements Runnable {
                 while (msg.equals("")) {
                     msg = mySerial.getIncommingString();
                     try {
-                        Thread.sleep(100);
+                        Thread.sleep(1000);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Reciever.class.getName()).log(Level.SEVERE, null, ex);
                         JOptionPane.showMessageDialog(null, "Error");
@@ -111,7 +111,9 @@ public class Reciever implements Runnable {
                         JOptionPane.showMessageDialog(null, "Error");
                     }
                 }
+                        
                 String[] recieved = msg.split("\"");
+                System.out.println(msg);
                 sender = recieved[3];
                 System.out.println("Sender:" + sender);
                 recieved = msg.split("\n");

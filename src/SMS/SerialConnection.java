@@ -1,10 +1,9 @@
 package SMS;
 
-import javax.comm.*;
-import java.io.*;
-import java.awt.TextArea;
 import java.awt.event.*;
+import java.io.*;
 import java.util.TooManyListenersException;
+import javax.comm.*;
 import javax.swing.JOptionPane;
 
 /**
