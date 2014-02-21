@@ -26,6 +26,9 @@ import javax.swing.JOptionPane;
  */
 public class Utilfunctions {
 
+    public static double degreeToDecimal(double degree, double minutes, double seconds){
+        return degree + minutes/60 +seconds/3600;
+    }
     public static void setLocation(JFrame jf) {
         toolkit = Toolkit.getDefaultToolkit();
         dim = toolkit.getScreenSize();
@@ -98,8 +101,8 @@ public static String getDbConfig(String field) {
             result = statement.executeQuery();
             
         } catch (SQLException e) {
-            //JOptionPane.showMessageDialog(null, e.getMessage());
-            Logger.getLogger(Utilfunctions.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            //Logger.getLogger(Utilfunctions.class.getName()).log(Level.SEVERE, null, e);
         }
         
         return result;
@@ -117,8 +120,8 @@ public static String getDbConfig(String field) {
             
             rowsAffected = statement.executeUpdate();
         } catch (Exception e) {
-            //JOptionPane.showMessageDialog(null, e);
-             Logger.getLogger(Utilfunctions.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(null, e.getMessage());
+             //Logger.getLogger(Utilfunctions.class.getName()).log(Level.SEVERE, null, e);
         }
         return rowsAffected;
     }
@@ -127,6 +130,6 @@ public static String getDbConfig(String field) {
     private static Dimension dim;
     private static int width;
     private static int height;
-     private static ResultSet result;
+    private static ResultSet result;
     private static Connection con;
 }

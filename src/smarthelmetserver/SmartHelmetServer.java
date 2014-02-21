@@ -7,6 +7,9 @@ package smarthelmetserver;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,31 +20,35 @@ public class SmartHelmetServer {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
+        try {
+            Utilfunctions.executeUpdate("UPDATE `client` SET `tid`= NULL WHERE 1"); //clears all the registered clients in previous session 
 
-        Utilfunctions.executeUpdate("UPDATE `client` SET `tid`= NULL WHERE 1"); //clears all the registered clients in previous session 
 
+            ServerSocket listener = new ServerSocket(6050);
+            Socket socketReg = new Socket();
+            sender = new ServerSocket(6051);
+            socket = new Socket[NoOfSockets];
 
-        ServerSocket listener = new ServerSocket(6050);
-        Socket socketReg = new Socket();
-        sender = new ServerSocket(6051);
-        socket = new Socket[NoOfSockets];
+            //thread to handle sms 
+            RecieveSMS sms = new RecieveSMS();
+            Thread s = new Thread(sms);
+            s.start();
 
-        //thread to handle sms 
-        RecieveSMS sms = new RecieveSMS();
-        Thread s = new Thread(sms);
-        s.start();
+            while (true) {
 
-        while (true) {
+                socketReg = listener.accept();
 
-            socketReg = listener.accept();
+                // thread to register the clients
+                RegisterClient p = new RegisterClient();
+                p.setSocketReg(socketReg);
+                Thread t = new Thread(p);
+                t.start();
 
-            // thread to register the clients
-            RegisterClient p = new RegisterClient();
-            p.setSocketReg(socketReg);
-            Thread t = new Thread(p);
-            t.start();
-
+            }
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Unable to connect to the internet");
+            System.exit(0);
         }
     }
     public static Socket[] socket;

@@ -35,20 +35,20 @@ public class RegisterClient implements Runnable {
                 String name = null;
                 double Latitude = 0.0;
                 double Longitude = 0.0;
-                String[] in = new String[4];
+                String[] in = new String[10];
                 //decode message 
                 in = msg.split("~");
                 name = in[1];
 
-                if (in[2].endsWith("N")) {
-                    Latitude = Double.parseDouble(in[2].substring(0, in[2].length() - 1));
+                if (in[5].equals("N")) {
+                    Latitude = Utilfunctions.degreeToDecimal(Double.parseDouble(in[2]), Double.parseDouble(in[3]) ,Double.parseDouble(in[4]));
                 } else {
-                    Latitude = -Double.parseDouble(in[2].substring(0, in[2].length() - 1));
+                    Latitude = -Utilfunctions.degreeToDecimal(Double.parseDouble(in[2]), Double.parseDouble(in[3]) ,Double.parseDouble(in[4]));
                 }
-                if (in[3].endsWith("E")) {
-                    Longitude = Double.parseDouble(in[3].substring(0, in[2].length() - 1));
+                if (in[9].equals("E")) {
+                    Longitude = Utilfunctions.degreeToDecimal(Double.parseDouble(in[6]), Double.parseDouble(in[7]) ,Double.parseDouble(in[8]));
                 } else {
-                    Longitude = -Double.parseDouble(in[3].substring(0, in[2].length() - 1));
+                    Longitude = -Utilfunctions.degreeToDecimal(Double.parseDouble(in[6]), Double.parseDouble(in[7]) ,Double.parseDouble(in[8]));
                 }
               
                 //store details in db

@@ -32,15 +32,15 @@ public class HandleSMS implements Runnable {
 
 
         if (coord[1].equals("N")) {
-            Latitude = Double.parseDouble(coord[0]);
+            Latitude = Utilfunctions.degreeToDecimal(Double.parseDouble(coord[0].substring(0, 2)), Double.parseDouble(coord[0].substring(2, coord[0].length())), 0);
         } else {
-            Latitude = -Double.parseDouble(coord[0]);
+            Latitude = -Utilfunctions.degreeToDecimal(Double.parseDouble(coord[0].substring(0, 2)), Double.parseDouble(coord[0].substring(2, coord[0].length())), 0);
         }
         if (coord[3].equals("E")) {
-            Longitude = Double.parseDouble(coord[2]);
+            Longitude = Utilfunctions.degreeToDecimal(Double.parseDouble(coord[2].substring(0, 3)), Double.parseDouble(coord[2].substring(3, coord[2].length())), 0);
         } else {
-            Longitude = -Double.parseDouble(coord[2]);
-        }     
+            Longitude = -Utilfunctions.degreeToDecimal(Double.parseDouble(coord[2].substring(0, 3)), Double.parseDouble(coord[2].substring(3, coord[2].length())), 0);
+        }
 
         // find nearest medical aid 
         MedicalAid aid = new MedicalAid(Latitude, Longitude);
