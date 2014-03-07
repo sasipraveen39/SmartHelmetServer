@@ -26,20 +26,20 @@ public class HandleSMS implements Runnable {
         String coord[] = new String[4];
         double Latitude = 0;
         double Longitude = 0;
-        //decode message Accident at 0302.033333,N,00402.033333,E
+        //decode message Accident at 03D02.033333M,N,004D02.033333M,E
         in = message.split(" ");
         coord = in[2].split(",");
 
 
         if (coord[1].equals("N")) {
-            Latitude = Utilfunctions.degreeToDecimal(Double.parseDouble(coord[0].substring(0, 2)), Double.parseDouble(coord[0].substring(2, coord[0].length())), 0);
+            Latitude = Utilfunctions.degreeToDecimal(Double.parseDouble(coord[0].substring(0, 2)), Double.parseDouble(coord[0].substring(3, coord[0].length()-1)), 0);
         } else {
-            Latitude = -Utilfunctions.degreeToDecimal(Double.parseDouble(coord[0].substring(0, 2)), Double.parseDouble(coord[0].substring(2, coord[0].length())), 0);
+            Latitude = -Utilfunctions.degreeToDecimal(Double.parseDouble(coord[0].substring(0, 2)), Double.parseDouble(coord[0].substring(3, coord[0].length()-1)), 0);
         }
         if (coord[3].equals("E")) {
-            Longitude = Utilfunctions.degreeToDecimal(Double.parseDouble(coord[2].substring(0, 3)), Double.parseDouble(coord[2].substring(3, coord[2].length())), 0);
+            Longitude = Utilfunctions.degreeToDecimal(Double.parseDouble(coord[2].substring(0, 3)), Double.parseDouble(coord[2].substring(4, coord[2].length()-1)), 0);
         } else {
-            Longitude = -Utilfunctions.degreeToDecimal(Double.parseDouble(coord[2].substring(0, 3)), Double.parseDouble(coord[2].substring(3, coord[2].length())), 0);
+            Longitude = -Utilfunctions.degreeToDecimal(Double.parseDouble(coord[2].substring(0, 3)), Double.parseDouble(coord[2].substring(4, coord[2].length()-1)), 0);
         }
 
         // find nearest medical aid 
